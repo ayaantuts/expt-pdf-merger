@@ -151,8 +151,33 @@ Prompts you for:
 
 ### CLI Version
 
+<!-- 
+parser.add_argument('--target_dir', required=True, type=str, help="Path to the parent directory containing experiment folders.")
+    parser.add_argument('--filename_pattern', required=True, type=str, help="Pattern of filenames to detect (e.g., 'Codes $.pdf').")
+    parser.add_argument('--pre_append_string', required=True, type=str, help="String to prepend to the filename (e.g., 'ML_').")
+
+ -->
+
 ```bash
-python file_renamer_cli.py "/path/to/root" "Codes $.pdf" "ML_"
+python file_renamer_cli.py \
+  --target-dir "/path/to/parent" \
+  --filename-pattern "Codes $.pdf" \
+  --pre-append-string "ML_"
+```
+
+### CLI Flags
+| Flag                | Description                                                                 | Required |
+| ------------------- | --------------------------------------------------------------------------- | -------- |
+| `--target-dir`      | Path to the parent directory containing experiment folders.                 | Yes      |
+| `--filename-pattern`| Pattern of filenames to detect (e.g., `Codes $.pdf`).                       | Yes      |
+| `--pre-append-string`| String to prepend to the filename (e.g., `ML_`).                          | Yes      |
+
+### Example
+```bash
+python file_renamer_cli.py \
+  --target-dir "/path/to/parent" \
+  --filename-pattern "Codes $.pdf" \
+  --pre-append-string "ML_"
 ```
 
 Renames files like:

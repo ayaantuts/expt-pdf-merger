@@ -1,0 +1,9 @@
+[project]
+name = "pdf-merger-djsce"
+version = "0.1.0"
+description = "PDF Merger to be used in DJSCE college submissions for best results"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pypdf2>=3.0.1",
+]

@@ -6,10 +6,10 @@ This Python tool helps you merge write-ups and optional code PDFs for a series o
 
 ## Table of Contents
 - [Folder Structure Requirements](#folder-structure-requirements)
+- [Installation](#installation)
 - [1. Interactive Script (Main Tool)](#1-interactive-script-main-tool)
 - [2. CLI Tool Usage](#2-cli-tool-usage)
 - [3. File Renamer Utility](#3-file-renamer-utility)
-- [Requirements](#requirements)
 - [Author](#author)
 
 ---
@@ -38,6 +38,39 @@ Where:
 * `[target_dir]` is the root directory containing all subject folders.
 * `[subject]_initials.pdf` is the combined certificate and rubrics PDF.
 * `[subject]_Assignment_1.pdf` and `[subject]_Assignment_2.pdf` are optional assignment PDFs.
+
+---
+
+## Installation
+
+First, clone the repository:
+
+```bash
+git clone https://github.com/ayaantuts/expt-pdf-merger
+cd expt-pdf-merger
+```
+
+It is recommended to use [uv](https://docs.astral.sh/uv/) for this project. You can install it using [the installation guide](https://docs.astral.sh/uv/getting-started/installation/) 
+
+Setup the project using:
+```bash
+uv sync
+```
+
+OR
+
+If you prefer not to use `uv`, you can use `pip` to install the required packages:
+
+But first you need to activate the virtual environment:
+```bash
+.venv\Scripts\activate # Windows
+source .venv/bin/activate # Linux
+```
+
+Then install the required packages:
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
@@ -129,32 +162,6 @@ Experiment 1/Codes 1.pdf -> Experiment 1/ML_Codes 1.pdf
 ```
 
 Only affects folders named `Experiment *`.
-
----
-
-## Requirements
-
-It is recommended to use [uv](https://docs.astral.sh/uv/) for this project. You can install it using [the installation guide](https://docs.astral.sh/uv/getting-started/installation/) 
-
-Setup the project using:
-```bash
-uv sync
-```
-
-OR
-
-If you prefer not to use `uv`, you can use `pip` to install the required packages:
-
-But first you need to activate the virtual environment:
-```bash
-.venv\Scripts\activate # Windows
-source .venv/bin/activate # Linux
-```
-
-Then install the required packages:
-```bash
-pip install -r requirements.txt
-```
 
 ---
 

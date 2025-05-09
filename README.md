@@ -140,7 +140,7 @@ This utility renames specific PDFs in `Experiment $` folders by prepending a giv
 ### Interactive Version
 
 ```bash
-python renamer_main.py
+python file_renamer_main.py
 ```
 
 Prompts you for:
@@ -152,7 +152,7 @@ Prompts you for:
 ### CLI Version
 
 ```bash
-python renamer.py "/path/to/root" "Codes $.pdf" "ML_"
+python file_renamer_cli.py "/path/to/root" "Codes $.pdf" "ML_"
 ```
 
 Renames files like:

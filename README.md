@@ -7,9 +7,13 @@ This Python tool helps you merge write-ups and optional code PDFs for a series o
 ## Table of Contents
 - [Folder Structure Requirements](#folder-structure-requirements)
 - [Installation](#installation)
-- [1. Interactive Script (Main Tool)](#1-interactive-script-main-tool)
-- [2. CLI Tool Usage](#2-cli-tool-usage)
-- [3. File Renamer Utility](#3-file-renamer-utility)
+- [Usage](#usage)
+  - [Merging PDFs](#merging-pdfs)
+    - [1. Interactive Script (Main Tool)](#1-interactive-script-main-tool)
+    - [2. CLI Tool Usage](#2-cli-tool-usage)
+  - [File Renamer Utility](#file-renamer-utility)
+    - [1. Interactive Version](#1-interactive-version)
+    - [2. CLI Version](#2-cli-version)
 - [Author](#author)
 
 ---
@@ -61,7 +65,12 @@ OR
 
 If you prefer not to use `uv`, you can use `pip` to install the required packages:
 
-But first you need to activate the virtual environment:
+But first you need to create the virtual environment:
+```bash
+python -m venv .venv
+```
+
+Then activate the virtual environment:
 ```bash
 .venv\Scripts\activate # Windows
 source .venv/bin/activate # Linux
@@ -74,12 +83,22 @@ pip install -r requirements.txt
 
 ---
 
-## 1. Interactive Script (Main Tool)
+## Usage
+This tool has two main functionalities:
+1. Merging PDFs from multiple experiments into a single PDF.
+2. Renaming specific PDFs in the `Experiment $` folders by prepending a given string.
+
+The merging process can be done using either an interactive script or a command-line interface (CLI) tool. The renaming utility is also available in both interactive and CLI formats.
+
+> **Note:** If you do not have the `uv` package installed, you can run the scripts directly using Python, just replace `uv run` with `python` in the commands below.
+
+### Merging PDFs
+#### 1. Interactive Script (Main Tool) 
 
 Run the interactive version:
 
 ```bash
-python merger_main.py
+uv run merger_main.py
 ```
 
 You will be prompted for:
@@ -91,7 +110,7 @@ You will be prompted for:
 * Number of assignments (enter 0 if none)
 * Whether to include `[subject]_initials.pdf`
 
-### Output
+##### Output
 
 After execution:
 
@@ -106,12 +125,12 @@ After execution:
 
 ---
 
-## 2. CLI Tool Usage
+#### 2. CLI Tool Usage
 
 Use this version if you prefer command-line flags or scripting integration:
 
 ```bash
-python merge_tool_cli.py \
+uv run merge_tool_cli.py \
   --target-dir "/path/to/root" \
   --subject "[subject]" \
   --num 8 \
@@ -120,7 +139,7 @@ python merge_tool_cli.py \
   --num-assignments 2
 ```
 
-### CLI Flags
+##### CLI Flags
 
 | Flag                 | Description                                                         | Required |
 | -------------------- | ------------------------------------------------------------------- | -------- |
@@ -133,14 +152,13 @@ python merge_tool_cli.py \
 
 ---
 
-## 3. File Renamer Utility
-
+### File Renamer Utility
 This utility renames specific PDFs in `Experiment $` folders by prepending a given string, where `$` is the experiment number.
 
-### Interactive Version
+#### 1. Interactive Version
 
 ```bash
-python file_renamer_main.py
+uv run file_renamer_main.py
 ```
 
 Prompts you for:
@@ -149,32 +167,25 @@ Prompts you for:
 * File pattern to match (e.g., `Codes $.pdf`)
 * Prefix to prepend (e.g., `ML_`)
 
-### CLI Version
-
-<!-- 
-parser.add_argument('--target_dir', required=True, type=str, help="Path to the parent directory containing experiment folders.")
-    parser.add_argument('--filename_pattern', required=True, type=str, help="Pattern of filenames to detect (e.g., 'Codes $.pdf').")
-    parser.add_argument('--pre_append_string', required=True, type=str, help="String to prepend to the filename (e.g., 'ML_').")
-
- -->
+#### 2. CLI Version
 
 ```bash
-python file_renamer_cli.py \
+uv run file_renamer_cli.py \
   --target-dir "/path/to/parent" \
   --filename-pattern "Codes $.pdf" \
   --pre-append-string "ML_"
 ```
 
-### CLI Flags
+##### CLI Flags
 | Flag                | Description                                                                 | Required |
 | ------------------- | --------------------------------------------------------------------------- | -------- |
 | `--target-dir`      | Path to the parent directory containing experiment folders.                 | Yes      |
 | `--filename-pattern`| Pattern of filenames to detect (e.g., `Codes $.pdf`).                       | Yes      |
 | `--pre-append-string`| String to prepend to the filename (e.g., `ML_`).                          | Yes      |
 
-### Example
+##### Example
 ```bash
-python file_renamer_cli.py \
+uv run file_renamer_cli.py \
   --target-dir "/path/to/parent" \
   --filename-pattern "Codes $.pdf" \
   --pre-append-string "ML_"

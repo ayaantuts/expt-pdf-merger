@@ -147,7 +147,7 @@ uv run merge_tool_cli.py \
 | `--subject`          | Subject name (e.g., `[subject]`, `OS`)                              | Yes      |
 | `--num`              | Number of experiments                                               | Yes      |
 | `--include-code`     | If set, includes code PDFs (`Subject_Codes X.pdf`)                  | No       |
-| `--include-initials` | If set, prepen[subject] `[subject]_initials.pdf` to the final merge | No       |
+| `--include-initials` | If set, prepends `[subject]_initials.pdf` to the final merge        | No       |
 | `--num-assignments`  | Number of assignments (e.g., 2 for `Subject_Assignment_1.pdf`)      | No       |
 
 ---

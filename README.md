@@ -103,6 +103,7 @@ uv run merger_main.py
 
 You will be prompted for:
 
+* Your roll number (e.g., 26)
 * Target directory path
 * Subject name (e.g., DS, OS)
 * Number of experiments
@@ -131,6 +132,7 @@ Use this version if you prefer command-line flags or scripting integration:
 
 ```bash
 uv run merge_tool_cli.py \
+  --roll-no 26 \
   --target-dir "/path/to/root" \
   --subject "[subject]" \
   --num 8 \
@@ -143,6 +145,7 @@ uv run merge_tool_cli.py \
 
 | Flag                 | Description                                                         | Required |
 | -------------------- | ------------------------------------------------------------------- | -------- |
+| `--roll-no`          | Your roll number (e.g., `C026`)                                     | Yes      |
 | `--target-dir`       | Root directory containing subject folders and PDF files             | Yes      |
 | `--subject`          | Subject name (e.g., `[subject]`, `OS`)                              | Yes      |
 | `--num`              | Number of experiments                                               | Yes      |

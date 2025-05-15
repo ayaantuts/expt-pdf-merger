@@ -23,6 +23,7 @@ def merge_pdfs(pdf_list:list[str], output_path:str)->None:
 
 def main():
 	parser = argparse.ArgumentParser(description="Merge experiment PDFs into one complete document.")
+	parser.add_argument("--roll-no", type=int, required=True, help="Roll number to aid in file name")
 	parser.add_argument("--target-dir", required=True, help="Root directory containing subject folders")
 	parser.add_argument("--subject", required=True, help="Subject name (folder under root)")
 	parser.add_argument("--num", type=int, required=True, help="Number of experiments")
@@ -31,6 +32,7 @@ def main():
 	parser.add_argument("--num-assignments", type=int, default=0, help="Number of assignments (default: 0)")
 
 	args = parser.parse_args()
+	roll_no_str = "C0"+str(args.roll_no) if args.roll_no < 100 else "C" + str(args.roll_no)
 
 	output_dir:str = os.path.join(args.target_dir, "output", "individual_merges")
 	os.makedirs(output_dir, exist_ok=True)
@@ -56,7 +58,7 @@ def main():
 			else:
 				print(f"Warning: {code} not found. Skipping code PDF.")
 
-		merged_path = os.path.join(output_dir, f"C026_{args.subject}_Experiment_{i}_merged.pdf")
+		merged_path = os.path.join(output_dir, f"{roll_no_str}_{args.subject}_Experiment_{i}_merged.pdf")
 		merge_pdfs(pdfs_to_merge, merged_path)
 		all_merged_paths.append(merged_path)
 		print(f"Merged {writeup} and {code if args.include_code else ''} into {merged_path}")
@@ -72,7 +74,7 @@ def main():
 				print(f"Warning: {assignment_path} not found. Skipping assignment PDF.")
 	# Final full merge
 
-	full_merge_path = os.path.join(args.target_dir, "output", f"C026_{args.subject}_Full_Merged.pdf")
+	full_merge_path = os.path.join(args.target_dir, "output", f"{roll_no_str}_{args.subject}_Full_Merged.pdf")
 	merge_pdfs(all_merged_paths, full_merge_path)
 
 	print(f"\nCLI merge complete.")

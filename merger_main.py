@@ -21,6 +21,10 @@ def merge_pdfs(pdf_list:list[str], output_path:str)-> None:
     merger.close()
 
 def main():
+    print("\nIndividual file name format: <roll_no>_<subject>_Experiment_<experiment_number>.pdf")
+    print("Full file name format: <roll_no>_<subject>_Full_Merged.pdf")
+    roll_no = int(input("Enter roll number: (to help in renaming) ").strip())
+    roll_no_str = "C0" + str(roll_no) if roll_no < 100 else "C" + str(roll_no)
     target_dir = input("Enter target directory path: ").strip()
     subject = input("Enter the subject name (e.g., DS, OS): ").strip()
     num_experiments = int(input("Enter number of experiments: "))
@@ -48,7 +52,7 @@ def main():
             else:
                 print(f"Warning: {code} not found. Skipping code PDF.")
 
-        merged_path = os.path.join(output_dir, f"C026_{subject}_Experiment_{i}.pdf")
+        merged_path = os.path.join(output_dir, f"{roll_no_str}_{subject}_Experiment_{i}.pdf")
         merge_pdfs(pdfs_to_merge, merged_path)
         all_merged_paths.append(merged_path)
         print(f"Merged {writeup} and {code if include_code else ''} into {merged_path}")
@@ -63,7 +67,7 @@ def main():
             else:
                 print(f"Warning: {assignment_path} not found. Skipping assignment PDF.")
     # Final full merge
-    full_merge_path = os.path.join(target_dir, "output", f"C026_{subject}_Full_Merged.pdf")
+    full_merge_path = os.path.join(target_dir, "output", f"{roll_no_str}_{subject}_Full_Merged.pdf")
     merge_pdfs(all_merged_paths, full_merge_path)
 
     print(f"\nAll PDFs merged successfully!\nOutput stored in: {os.path.join(target_dir, 'output')}")
